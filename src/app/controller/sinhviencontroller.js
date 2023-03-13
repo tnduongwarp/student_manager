@@ -31,6 +31,7 @@ export function getAllStudent(req, res) {
     SinhVien.find({})
         //.select('_id title description')
         .then((allStudent) => {
+
             return res.status(200).json({
                 success: true,
                 message: 'A list of all course',
@@ -92,7 +93,7 @@ export function updateStudent(req, res) {
 // DELETE A STUDENT
 export async function deleteOneStudent(req, res) {
     const id = req.params.id;
-    const sv = SinhVien.findById(id)
+    SinhVien.findById(id)
         .then(
             sv => {
                 console.log(sv);
@@ -121,32 +122,14 @@ export async function deleteOneStudent(req, res) {
                 }
             }
         )
-    //     .catch(err => {
-    //         throw err
-    //     });
-    // if (sv == null) {
-    //     return res.status(404).json({
-    //         success: false,
-    //         message: 'student not exists',
-    //     })
-    // }
-    // else {
-    //     SinhVien.deleteOneById(id)
-    //         .then((sv) => {
-    //             return res.status(200).json({
-    //                 success: true,
-    //                 message: 'delete this student successfully',
-    //                 student: sv
-    //             })
-    //         })
-    //         .catch(err => {
-    //             res.status(500).json({
-    //                 success: false,
-    //                 message: 'sever error. Try again',
-    //                 error: err.message
-    //             })
-    //         })
-    // }
+        .catch(err => {
+            res.status(500).json({
+                success: false,
+                message: 'sever error. Try again',
+                error: err.message
+            })
+        })
+
 }
 // GET BY CLASS NAME
 export function getStudentByClassName(req, res) {

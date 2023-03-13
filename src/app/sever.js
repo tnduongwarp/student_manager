@@ -11,15 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
-// set up mongoose 'mongodb://127.0.0.1:27017/demo'
-// set up mongoose
-// mongoose.connect('mongodb://127.0.0.1:27017/demo', { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => {
-//         console.log('Database connected');
-//     })
-//     .catch((error) => {
-//         console.log('Error connecting to database');
-//     });
+
 
 
 // set up port

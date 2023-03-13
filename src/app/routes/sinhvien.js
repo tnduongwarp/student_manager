@@ -1,9 +1,10 @@
 
-
+import authenticate from '../middlewares/authenticate.js'
 import express from 'express'
 const router = express.Router();
 import { getAllStudent, getStudentById, createStudent, updateStudent, deleteOneStudent, getStudentByClassName } from '../controller/sinhviencontroller.js';
-
+router.use(authenticate.verifyToken);
+router.use(authenticate.isAdmin);
 router.get('/all', getAllStudent);
 router.get('/:id', getStudentById);
 router.post('/add', createStudent);
