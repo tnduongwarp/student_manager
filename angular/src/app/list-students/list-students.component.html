@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12 text-center"><h2>Students List</h2></div>
+</div>
+
+<div class="row">
+  <table class="table " style="border:1px solid black">
+    <div class="col-md-2" style="text-align: center;"></div>
+    <thead>
+      <th style="text-align: center;">
+        MSSV
+      </th>
+      <th style="text-align: center;">
+        Name
+      </th >
+      <th style="text-align: center;">
+        Email
+      </th>
+      <th style="text-align: center;">
+        Class
+      </th>
+      <th style="text-align: center;">
+        Edit Delete
+      </th>
+    </thead>
+    <div class="col-md-2"></div>
+    <tbody>
+      <tr *ngFor="let student of students ">
+        <td style="text-align: center;">{{student.mssv}}</td>
+        <td style="text-align: center;">{{student.name}}</td>
+        <td style="text-align: center;">{{student.email}}</td>
+        <td style="text-align: center;">{{student.class}}</td>
+        <td style="text-align: center;"> <a href="student/update/{{student._id}}" class="btn-success">EDIT</a>|<button (click)="deleteStudent(student)" class="btn btn-danger">DELETE</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <a href="student/add" class="btn-success center" style="text-align: center;">ADD</a>
+</div>

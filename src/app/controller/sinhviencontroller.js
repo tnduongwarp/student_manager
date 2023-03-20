@@ -54,8 +54,8 @@ export function getStudentById(req, res) {
         .then((student) => {
             return res.status(200).json({
                 success: true,
-                message: 'student has id ',
-                SinhVien: student,
+                message: 'get student success',
+                student: student
             });
         })
         .catch((err) => {
@@ -151,5 +151,23 @@ export function getStudentByClassName(req, res) {
             });
         })
 }
-
+export function getStudentByMSSV(req, res) {
+    const MSSV = req.query.MSSV;
+    
+    SinhVien.findbyMSSV(MSSV)
+        .then((student) => {
+            return res.status(200).json({
+                success: true,
+                message: 'list of students in this class ',
+                SinhVien: student,
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                success: false,
+                message: 'Server error. Please try again. ',
+                err: err.message,
+            });
+        })
+}
 

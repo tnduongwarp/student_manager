@@ -10,6 +10,9 @@ class sinhvien extends BaseModel {
     async findbyClassName(className) {
         return await this.getCollection().find({ class: className }).toArray()
     }
+    async findbyMSSV(MSSV) {
+        return await this.getCollection().find({ MSSV: MSSV }).toArray()
+    }
 
 }
 export default new sinhvien();

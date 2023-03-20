@@ -18,10 +18,10 @@ function route(app) {
 
         try {
 
-            const { first_name, last_name, email, password, role } = req.body;
+            const { mssv, email, password, role } = req.body;
 
 
-            if (!(email && password && first_name && last_name)) {
+            if (!(email && password && mssv)) {
                 res.status(400).send("All input is required");
             }
 
@@ -36,7 +36,7 @@ function route(app) {
             const encryptedPassword = await bcrypt.hash(password, 10);
 
             const token = jwt.sign(
-                { email },
+                { email ,mssv},
                 process.env.TOKEN_KEY,
                 {
                     expiresIn: "2h",
@@ -44,8 +44,7 @@ function route(app) {
             );
 
             const user = {
-                first_name: first_name,
-                last_name: last_name,
+                mssv: mssv,
                 email: email,
                 password: encryptedPassword,
                 roles: role
@@ -72,6 +71,7 @@ function route(app) {
         try {
 
             const { email, password } = req.body;
+            console.log(req.body)
 
 
             if (!(email && password)) {
@@ -84,8 +84,8 @@ function route(app) {
             if (user && (await bcrypt.compare(password, user.password))) {
 
                 const token = await jwt.sign(
-                    {
-                        _id: user._id, email,
+                    { 
+                       email: user.email,
                         role: user.role
                     },
                     process.env.TOKEN_KEY,
