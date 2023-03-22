@@ -10,28 +10,32 @@ import { AccountService } from '../account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form!: FormGroup;
+  form: FormGroup;
 
 
   constructor(
       private formBuilder: FormBuilder,
+      private routes: Router,
       private accountService: AccountService
-  ) { }
+  ) { this.form = this.formBuilder.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+});}
 
   ngOnInit() {
-      this.form = this.formBuilder.group({
-          username: ['', Validators.required],
-          password: ['', Validators.required]
-      });
+
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.form; }
+  get email() { return this.form.get('email'); }
+  get password() { return this.form.get('password'); }
 
   onSubmit() {
-      console.log(this.form.value);
+
       this.accountService.login(this.form.value).subscribe((data: any)=>{
-        //console.log(data);
+        console.log(data)
+        if(data.token) this.routes.navigate(['student/list']);
       })
+
   }
 }

@@ -5,25 +5,25 @@ import {HttpClient, HttpParams} from '@angular/common/http'
   providedIn: 'root'
 })
 export class StudentsService {
+  url :any
 
-
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { this.url='http://localhost:3000/student/' }
 
 
   addStudent(student: any){
-    return this.http.post('http://localhost:3000/student/add',student);
+    return this.http.post(this.url+'add',student);
   }
   listStudent(){
-    return this.http.get('http://localhost:3000/student/all');
+    return this.http.get(this.url+'all');
   }
   deleteStudent(id:any){
-    return this.http.delete('http://localhost:3000/student/'+id);
+    return this.http.delete(this.url+id);
   }
   getStudentById(id:any){
-    return this.http.get('http://localhost:3000/student/'+id);
+    return this.http.get(this.url+id);
   }
   updateStudent(id :any,student:any){
-    return this.http.post('http://localhost:3000/student/update/'+id,student);
+    return this.http.post(this.url+'update/'+id,student);
   }
 
 }

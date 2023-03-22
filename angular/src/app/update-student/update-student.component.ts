@@ -35,7 +35,7 @@ export class UpdateStudentComponent implements Validators{
     console.log(this.updatedStudent.value);
     this.studentService.updateStudent(this.id,this.updatedStudent.value).subscribe((data: any)=>{
 
-      this.routes.navigate(['']);
+      this.routes.navigate(['student/list']);
     })
   }
 }

@@ -10,26 +10,41 @@ import { StudentsService } from '../students.service';
 })
 export class AddStudentComponent {
   newStudent: any
+
+
   constructor(private fb: FormBuilder,
     private routes: Router,
     private studentService: StudentsService){
       this.newStudent=fb.group(
         {
-          mssv:['',Validators.required],
+          mssv:['',[Validators.required,Validators.maxLength(8),Validators.minLength(8)]],
           name:['',Validators.required],
           class:['',Validators.required],
-          email:['',Validators.required],
+          email:['',[Validators.required, Validators.email]]
         }
       )
     }
+   // Validators.maxLength(8),
   ngOnInit(): void{
 
   }
   onSubmit(){
-    console.log(this.newStudent.value);
+
     this.studentService.addStudent(this.newStudent.value).subscribe((data: any)=>{
-      console.log(data);
-      this.routes.navigate(['']);
+
+      this.routes.navigate(['student/list']);
     })
+  }
+  get mssv(){
+    return this.newStudent.get('mssv')
+  }
+  get email(){
+    return this.newStudent.get('email')
+  }
+  get class(){
+    return this.newStudent.get('class')
+  }
+  get name(){
+    return this.newStudent.get('name');
   }
 }

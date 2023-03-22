@@ -70,8 +70,7 @@ function route(app) {
 
         try {
 
-            const { email, password } = req.body;
-            console.log(req.body)
+           const {email,password}= req.body;
 
 
             if (!(email && password)) {
@@ -79,7 +78,7 @@ function route(app) {
             }
 
             const user = await User.findOne({ email: email });
-            console.log(user)
+            
 
             if (user && (await bcrypt.compare(password, user.password))) {
 

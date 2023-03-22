@@ -9,6 +9,7 @@ import { StudentsService } from '../students.service';
 })
 export class ListStudentsComponent implements OnInit{
   students: any;
+  token: any
   constructor( private routes: Router,
     private studentService: StudentsService){
 
@@ -18,7 +19,7 @@ export class ListStudentsComponent implements OnInit{
   }
   loadStudent(){
     this.studentService.listStudent().subscribe((data:any)=>{
-      console.log(data);
+
       this.students=data.SinhVien;
     })
   }

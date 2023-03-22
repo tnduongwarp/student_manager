@@ -10,5 +10,6 @@ export class AccountService {
 
   login(data : any){
     return this.http.post('http://localhost:3000/login',data);
+
   }
 }
