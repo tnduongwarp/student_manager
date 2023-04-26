@@ -21,6 +21,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule} from 'ng-zorro-antd/button';
 
 
+
 registerLocaleData(en);
 
 
@@ -30,7 +31,7 @@ registerLocaleData(en);
     AddStudentComponent,
     ListStudentsComponent,
     UpdateStudentComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

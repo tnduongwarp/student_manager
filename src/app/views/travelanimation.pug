@@ -1,0 +1,123 @@
+doctype html
+head
+  title Animated truck
+  script(src='https://unpkg.com/threebox-plugin/dist/threebox.js' type='text/javascript')
+  link(href='https://unpkg.com/threebox-plugin/dist/threebox.css' rel='stylesheet')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js')
+  script(src='https://d3js.org/d3.v5.min.js')
+  style.
+    body,
+    html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: black;
+    }
+    #map {
+    width: 100%;
+    height: 100%;
+    }
+    #explainer {
+    z-index: 99;
+    }
+#map.map
+#explainer Click on the map to drive the truck there
+script(type='module').
+  // This example downloads a truck model from an external OBJ/MTL file, adds it to the map, and drives it around via paths fetched from the Mapbox Directions API
+  
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2FvbWFuaHF1YW5nIiwiYSI6ImNrem45Z3k1dDAzYWwybm53d2VsajYzYnQifQ.6ky4BUk51SfnFaXQdn8uWQ';
+  var origin = [-122.4340, 37.7353];
+  var destination, line;
+  var truck;
+  const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
+  origin,
+  0
+  );
+  var options = {
+  type: 'gltf',
+  obj: 'models/newtruck.glb',
+  scale: 150,
+  units: 'meters',
+  anchor: "center",
+  rotation: {
+  x: 90,
+  y: 180,
+  z: 0
+  }, //rotation to postiion the truck and heading properly
+  }
+  
+  
+  var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v12',
+  center: origin,
+  zoom: 11,
+  pitch: 30,
+  bearing: 90,
+  antialias: true
+  });
+  const mapzoom= map.getZoom()
+
+
+  
+  map.on('style.load', function() {
+  // stats
+
+  map
+  .addLayer({
+  id: 'custom_layer',
+  type: 'custom',
+  renderingMode: '3d',
+  fixedZoom: true,
+  onAdd: function(map, mbxContext) {
+  window.tb = new Threebox(
+  map,
+  mbxContext, {
+  defaultLights: true
+  }
+  );
+  console.log(mbxContext)
+  
+  // Royalty Free License: Vehicles by https://www.cgtrader.com/antonmoek
+  // from https://www.cgtrader.com/free-3d-models/car/concept/cartoon-low-poly-city-cars-pack
+  tb.loadObj(options, function(model) {
+  truck = model.setCoords(origin);
+
+  //- truck.fixedZoom = 1;
+  window.truck = truck;
+  
+  tb.add(truck);
+  })
+ 
+  },
+  render: function(gl, matrix) {
+  //console.log(this.camera)
+  //- console.log("matrix", matrix, )
+ 
+  let zoom = map.getZoom();
+
+  tb.update()
+  }
+  });
+  })
+  
+  function onObjectChanged(e) {
+  let model = e.detail.object; //here's the object already modified
+  let action = e.detail.action; //here's the action that changed the object
+  }
+  
+  //convenience function for fetch
+  function fetchFunction(url, cb) {
+  fetch(url)
+  .then(
+  function(response) {
+  if (response.status === 200) {
+  response.json()
+  .then(function(data) {
+  cb(data)
+  })
+  }
+  }
+  )
+  }

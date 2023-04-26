@@ -11,6 +11,13 @@ import jwt from 'jsonwebtoken';
 
 
 function route(app) {
+    app.use(function(req, res, next) {
+        res.header(
+          "Access-Control-Allow-Headers",
+          "x-access-token, Origin, Content-Type, Accept"
+        );
+        next();
+      });
     app.use('/student', SinhVien);
 
     app.post("/register", async (req, res) => {
@@ -74,10 +81,10 @@ function route(app) {
 
 
             if (!(email && password)) {
-                res.status(400).send("All input is required");
+                 return res.status(400).send("All input is required");
             }
 
-            const user = await User.findOne({ email: email });
+            var user = await User.findOne({ email: email });
             
 
             if (user && (await bcrypt.compare(password, user.password))) {
@@ -93,9 +100,15 @@ function route(app) {
                     }
                 );
 
-                user.token = token;
-
-                res.status(200).json(user);
+                
+                
+                res.status(200).json({
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    roles: user.role,
+                    accessToken: token
+                });
             }
             else res.status(400).send("Invalid Credentials");
         } catch (err) {
@@ -103,6 +116,14 @@ function route(app) {
         }
 
     });
+    app.post('signout', async (req, res)=>{
+        try {
+            req.session = null;
+            return res.status(200).send({ message: "You've been signed out!" });
+          } catch (err) {
+            this.next(err);
+          }
+    })
 }
 
 export default route;

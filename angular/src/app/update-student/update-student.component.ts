@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators , ReactiveFormsModule} from '@angular/forms';
 import { Router , ActivatedRoute} from '@angular/router';
-import { StudentsService } from '../students.service';
+import { StudentsService } from '../service/students.service';
 
 @Component({
   selector: 'app-update-student',

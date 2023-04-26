@@ -3,39 +3,53 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AccountService } from '../account.service';
+import { AccountService } from '../service/account.service';
+
+import { StorageService } from '../service/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  form: any = {
+    email: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  role: any;
 
+  constructor(private accountService: AccountService, private storageService: StorageService) { }
 
-  constructor(
-      private formBuilder: FormBuilder,
-      private routes: Router,
-      private accountService: AccountService
-  ) { this.form = this.formBuilder.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
-});}
-
-  ngOnInit() {
-
+  ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      this.role = this.storageService.getUser().role;
+    }
   }
 
-  // convenience getter for easy access to form fields
-  get email() { return this.form.get('email'); }
-  get password() { return this.form.get('password'); }
+  onSubmit(): void {
 
-  onSubmit() {
+    console.log(this.form)
+    this.accountService.login(this.form).subscribe({
+      next: data => {
+        this.storageService.saveUser(data);
 
-      this.accountService.login(this.form.value).subscribe((data: any)=>{
-        console.log(data)
-        if(data.token) this.routes.navigate(['student/list']);
-      })
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.role = this.storageService.getUser().role;
+        this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    });
+  }
 
+  reloadPage(): void {
+    window.location.reload();
   }
 }
