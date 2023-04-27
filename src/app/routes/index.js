@@ -100,15 +100,9 @@ function route(app) {
                     }
                 );
 
+                req.session.token=token
                 
-                
-                res.status(200).json({
-                    id: user._id,
-                    name: user.name,
-                    email: user.email,
-                    roles: user.role,
-                    accessToken: token
-                });
+                res.status(200).json(user);
             }
             else res.status(400).send("Invalid Credentials");
         } catch (err) {
@@ -116,12 +110,13 @@ function route(app) {
         }
 
     });
-    app.post('signout', async (req, res)=>{
+    app.post("/logout", async (req, res)=>{
         try {
-            req.session = null;
+            
+            req.session=null;
             return res.status(200).send({ message: "You've been signed out!" });
           } catch (err) {
-            this.next(err);
+            console.log(err)
           }
     })
 }

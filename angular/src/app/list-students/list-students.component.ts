@@ -9,7 +9,8 @@ import { StudentsService } from '../service/students.service';
 })
 export class ListStudentsComponent implements OnInit{
   students: any;
-  token: any
+  token: any;
+  isForbiden: boolean = false;
   constructor( private routes: Router,
     private studentService: StudentsService){
 
@@ -18,9 +19,14 @@ export class ListStudentsComponent implements OnInit{
     this.loadStudent();
   }
   loadStudent(){
-    this.studentService.listStudent().subscribe((data:any)=>{
-
-      this.students=data.SinhVien;
+    this.studentService.listStudent().subscribe({
+      next: (data:any)=>{
+        this.isForbiden=false;
+        this.students=data.SinhVien;
+      },
+      error: err =>{
+        this.isForbiden=true
+      }
     })
   }
   deleteStudent(data: any){

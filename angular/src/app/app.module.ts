@@ -19,6 +19,7 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule} from 'ng-zorro-antd/button';
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
 
 
 
@@ -47,7 +48,8 @@ registerLocaleData(en);
 
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

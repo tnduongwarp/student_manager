@@ -17,6 +17,7 @@ export class AccountService {
     return this.http.post('http://localhost:3000/login', data, httpOptions);
   }
   logout(): Observable<any> {
-    return this.http.post('http://localhost:3000/signout', { }, httpOptions);
+
+    return this.http.post('http://localhost:3000/logout', httpOptions);
   }
 }

@@ -21,12 +21,17 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   role: any;
 
-  constructor(private accountService: AccountService, private storageService: StorageService) { }
+  constructor(
+    private accountService: AccountService,
+    private storageService: StorageService,
+    private route: Router
+    ) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.role = this.storageService.getUser().role;
+      this.reloadPage();
     }
   }
 
@@ -50,6 +55,6 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    window.location.reload();
+    this.route.navigateByUrl("student/list")
   }
 }

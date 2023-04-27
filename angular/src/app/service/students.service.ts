@@ -15,16 +15,16 @@ export class StudentsService {
     return this.http.post(this.url+'add',student);
   }
   listStudent(): Observable<any> {
-    return this.http.get(this.url+'all',{ responseType: 'text' });
+    return this.http.get(this.url+'all');
   }
   deleteStudent(id:any): Observable<any> {
-    return this.http.delete(this.url+id,{ responseType: 'text' });
+    return this.http.delete(this.url+id);
   }
   getStudentById(id:any): Observable<any> {
-    return this.http.get(this.url+id,{ responseType: 'text' });
+    return this.http.get(this.url+id);
   }
   updateStudent(id :any,student:any): Observable<any> {
-    return this.http.post(this.url+'update/'+id,student,{ responseType: 'text' });
+    return this.http.post(this.url+'update/'+id,student);
   }
 
 }

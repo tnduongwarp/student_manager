@@ -16,13 +16,17 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(private storageService: StorageService, private eventBusService: EventBusService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authReq = req;
-    const token = this.storageService.getToken();
-    if (token != null) {
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
-    }
-    return next.handle(authReq);
-  }
+    req = req.clone({
+      withCredentials: true,
+    });
+    return next.handle(req);
+  //   let authReq = req;
+  //   const token = this.storageService.getToken();
+  //   if (token != null) {
+  //     authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
+  //   }
+  //   return next.handle(authReq);
+   }
 }
 
 

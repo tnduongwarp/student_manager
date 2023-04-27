@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
-    let token = req.headers["x-access-token"];
+    let token = req.session.token;
 
     if (!token) {
         return res.status(403).send("A token is required for authentication");
