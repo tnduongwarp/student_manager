@@ -1,24 +1,47 @@
 import { Component } from '@angular/core';
-import * as QRCode from 'qrcodejs'
-
+import { QrService } from '../service/qr.service';
+//import * as VietQR from 'vietqr'
 @Component({
   selector: 'app-qrcodegennerator',
   templateUrl: './qrcodegennerator.component.html',
   styleUrls: ['./qrcodegennerator.component.css']
 })
 export class QrcodegenneratorComponent {
-  generateQR() {
-    var amount = document.getElementById("amount").value;
-    var name = document.getElementById("name").value;
-    var account = document.getElementById("account").value;
-
-    var qr = new QRCode(document.getElementById("qrcode"), {
-      text: "BANK:" + name + ";ACC:" + account + ";AMOUNT:" + amount,
-      width: 256,
-      height: 256,
-      colorDark : "#000000",
-      colorLight : "#ffffff",
-      correctLevel : QRCode.CorrectLevel.H
-    });
+  bankdatas: any;
+  searchKey: any;
+  constructor(private qrService: QrService){}
+  ngOnInit(){
+    this.qrService.getbank().subscribe(
+      (data: any) =>{
+        this.bankdatas=data
+      }
+    )
   }
+  srcImage = '';
+  qrIsReady = false;
+  form : any ={
+    bank: null,
+    accountName: null,
+    accountNumber: null,
+    amount: '',
+    memo: '',
+    template: "qr_only"
+  };
+  onSubmit(){
+    this.qrService.getQRCode(this.form).subscribe({
+      next : (data: any) =>{
+        this.srcImage= data.qrDataURL;
+        this.qrIsReady= true;
+       // window.location.reload();
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+  // get filterBanks(){
+  //   return this.bankdatas.filter( (option: any) => {
+  //     return option.name.toLowerCase().includes(this.searchKey.toLowerCase())
+  //   })
+  // }
 }

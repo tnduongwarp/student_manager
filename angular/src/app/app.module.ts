@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddStudentComponent } from './add-student/add-student.component';
@@ -20,8 +19,12 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule} from 'ng-zorro-antd/button';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
-
-
+import { QrcodegenneratorComponent } from './qrcodegennerator/qrcodegennerator.component';
+import { ListmissComponent } from './listmiss/listmiss.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { AddmissComponent } from './addmiss/addmiss.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(en);
 
@@ -33,6 +36,9 @@ registerLocaleData(en);
     ListStudentsComponent,
     UpdateStudentComponent,
     LoginComponent,
+    QrcodegenneratorComponent,
+    ListmissComponent,
+    AddmissComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +50,10 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    NzButtonModule
-
+    NzButtonModule,
+    NgxQRCodeModule,
+    FileUploadModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

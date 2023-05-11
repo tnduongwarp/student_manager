@@ -1,0 +1,25 @@
+<div class="miss">
+  <img src="{{ miss.avatar }}" alt="image of the miss" />
+
+  <br />
+  <span>{{ miss.name }}</span>
+  <br />
+  <span>{{ miss.sbd }}</span>
+  <br />
+  <label for="amount">số lượt muốn bình chọn</label>
+  <select name="amount" id="amount" [(ngModel)]="amount">
+    <option value="1">1</option>
+    <option value="5">5</option>
+    <option value="10000000">10000000</option>
+  </select>
+  <button (click)="vote()">Vote</button>
+</div>
+<div *ngIf="isQRReady">
+  <ngx-qrcode
+    [elementType]="elementType"
+    [errorCorrectionLevel]="correctionLevel"
+    [value]="qrvalue"
+    alt="Demo QR Code"
+    cssClass="bshadow"
+  ></ngx-qrcode>
+</div>

@@ -1,8 +1,6 @@
 
 import SinhVien from '../models/SinhVien.js';
 
-
-
 // POST a student
 export function createStudent(req, res) {
 
@@ -170,5 +168,16 @@ export function getStudentByMSSV(req, res) {
                 err: err.message,
             });
         })
+}
+export function test(req, res){
+    SinhVien.findById("645c9e6cd7581136a6116098")
+    .then( data => {
+        console.log(data);
+        return res.json({
+            message: 'ok',
+            data: data
+        })
+    });
+    
 }
 

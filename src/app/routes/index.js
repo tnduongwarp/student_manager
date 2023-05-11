@@ -1,14 +1,10 @@
-
-
-import e from 'express';
 import SinhVien from '../routes/sinhvien.js'
 import User from '../models/User.js';
-
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
-
-
-
+import * as qrcontroller from '../controller/qrcontroller.js';
+import uploadFilesMiddleware from '../middlewares/upload.js';
+import Miss from '../routes/miss.js'
 
 function route(app) {
     app.use(function(req, res, next) {
@@ -19,56 +15,11 @@ function route(app) {
         next();
       });
     app.use('/student', SinhVien);
+    app.use('/miss', Miss);
+  
+    app.get('/bankdata', qrcontroller.getAllBank)
 
-    app.post("/register", async (req, res) => {
-
-
-        try {
-
-            const { mssv, email, password, role } = req.body;
-
-
-            if (!(email && password && mssv)) {
-                res.status(400).send("All input is required");
-            }
-
-
-            const oldUser = await User.find({ email: email });
-            console.log(oldUser)
-
-            if (oldUser.at(0)) {
-                return res.status(409).send("User Already Exist. Please Login");
-            }
-
-            const encryptedPassword = await bcrypt.hash(password, 10);
-
-            const token = jwt.sign(
-                { email ,mssv},
-                process.env.TOKEN_KEY,
-                {
-                    expiresIn: "2h",
-                }
-            );
-
-            const user = {
-                mssv: mssv,
-                email: email,
-                password: encryptedPassword,
-                roles: role
-
-            };
-            User.insertOne(user);
-
-
-
-
-            res.status(201).json(user);
-        } catch (err) {
-            console.log(err);
-        }
-
-    });
-
+    
 
 
 
@@ -117,6 +68,33 @@ function route(app) {
             return res.status(200).send({ message: "You've been signed out!" });
           } catch (err) {
             console.log(err)
+          }
+    })
+
+    app.post("/upload", async (req,res) => {
+        try{
+            await uploadFilesMiddleware(req, res);
+            
+            const file = req.file
+            
+            if (file == undefined) {
+                return res.status(404).send({
+                  message: "You must select a file.",
+                });
+              }
+              return res.send({
+                message: "Uploaded",
+                id: file.id,
+                name: file.filename,
+                contentType: file.contentType,
+              })
+        }
+        catch (error) {
+            console.log(error);
+        
+            return res.send({
+              message: "Error when trying upload image: ${error}",
+            });
           }
     })
 }

@@ -1,12 +1,59 @@
-<h1>QR Code Generator for Banking Money</h1>
-    <form>
-      <label for="amount">Amount:</label>
-      <input type="number" id="amount" name="amount"><br><br>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name"><br><br>
-      <label for="account">Account Number:</label>
-      <input type="number" id="account" name="account"><br><br>
-      <button type="button" onclick="generateQR()">Generate QR code</button>
-    </form>
+<form
+  name="form"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  #f="ngForm"
+  novalidate
+>
+  <div class="form-group">
+    <label for="bank">Ngân hàng thụ hưởng</label>
+    <select
+      type="text"
+      class="form-control"
+      name="bank"
+      [(ngModel)]="form.bank"
+      required
+      #bank="ngModel"
+    >
+      <input
+        type="text"
+        [(ngModel)]="searchKey"
+        name="searchKey"
+        placeholder="Điền tên ngân hàng tìm cho nhanh"
+      />
+      <option *ngFor="let bankdata of bankdatas" [value]="bankdata.bin">
+        {{ bankdata.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="accountNumber">Số tài khoản</label>
+    <input
+      type="text"
+      class="form-control"
+      name="accountNumber"
+      [(ngModel)]="form.accountNumber"
+      required
+      #accountNumber="ngModel"
+    />
+  </div>
 
-    <div id="qrcode"></div>
+  <div class="form-group">
+    <label for="accountName">Tên người thụ hưởng</label>
+    <input
+      type="text"
+      class="form-control"
+      name="accountName"
+      [(ngModel)]="form.accountName"
+      required
+      #accountName="ngModel"
+    />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary btn-block" (click)="onSubmit()">
+      Tạo mã
+    </button>
+  </div>
+</form>
+<div *ngIf="qrIsReady">
+  <img src="{{ srcImage }}" alt="qrcode" />
+</div>
