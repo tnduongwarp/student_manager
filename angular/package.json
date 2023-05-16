@@ -22,6 +22,7 @@
     "@types/mapbox-gl": "^2.7.10",
     "mapbox-gl": "^2.14.1",
     "ng-zorro-antd": "^15.0.3",
+    "ng2-search-filter": "^0.5.1",
     "qrcodejs": "^1.0.0",
     "rxjs": "~7.8.0",
     "three": "^0.151.3",

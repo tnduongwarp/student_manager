@@ -1,0 +1,67 @@
+<form
+
+      name="form"
+      (ngSubmit)=" onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="name">Tên sinh viên</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+
+          placeholder="{{student.name}}"
+          readonly
+        />
+
+      </div>
+      <div class="form-group">
+        <label for="mssv">MSSV</label>
+        <input
+          type="text"
+          class="form-control"
+          name="mssv"
+
+          placeholder="{{student.mssv}}"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="semester">Kỳ</label>
+        <input
+          type="text"
+          class="form-control"
+          name="semester"
+          [(ngModel)]="form.semester"
+          #semester="ngModel"
+
+        />
+      </div>
+      <div class="form-group">
+        <label for="gpa">GPA</label>
+        <input
+          type="text"
+          class="form-control"
+          name="gpa"
+          [(ngModel)]="form.gpa"
+          #gpa="ngModel"
+
+        />
+      </div>
+      <div class="form-group">
+        <label for="courses">Số tín chỉ</label>
+        <input
+          type="text"
+          class="form-control"
+          name="courses"
+          [(ngModel)]="form.courses"
+          #courses="ngModel"
+
+        />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Nhập</button>
+      </div>
+      <div class="form-group">

@@ -3,7 +3,7 @@
 import e from 'express';
 import SinhVien from '../routes/sinhvien.js'
 import User from '../models/User.js';
-
+import diem from '../routes/diem.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 
@@ -19,7 +19,7 @@ function route(app) {
         next();
       });
     app.use('/student', SinhVien);
-
+    app.use('/score', diem);
     app.post("/register", async (req, res) => {
 
 

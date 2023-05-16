@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.role = this.storageService.getUser().role;
-      this.reloadPage();
+
+      this.route.navigateByUrl("student/list")
     }
   }
 
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.role = this.storageService.getUser().role;
         this.reloadPage();
+        //this.route.navigateByUrl("student/list")
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    this.route.navigateByUrl("student/list")
+    window.location.reload();
+
   }
 }

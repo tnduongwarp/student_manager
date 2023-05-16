@@ -21,7 +21,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "nodemon D:/nodejs_basic/src/app/sever.js ",
+    "start": "nodemon D:/Project_II/pro2/src/app/sever.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

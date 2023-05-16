@@ -9,11 +9,21 @@ import { StorageService } from './service/storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  user: any;
+  isLogin= false
   constructor(
     private accservice: AccountService,
     private route : Router,
-    private storageService: StorageService
+    private storageService: StorageService,
      ){
+  }
+  ngOnInit(): void {
+
+    this.user= this.storageService.getUser();
+    if(this.storageService.isLoggedIn()) this.isLogin=true;
+    else{
+      this.route.navigateByUrl('login');
+    }
 
   }
   isCollapsed = false;
@@ -24,13 +34,13 @@ export class AppComponent {
         console.log(res);
         this.storageService.clean();
 
-        this.route.navigateByUrl('login')
+        window.location.reload()
+
       },
       error: err => {
         console.log(err);
       }
     });
   };
-
 }
 

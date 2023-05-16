@@ -20,8 +20,11 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule} from 'ng-zorro-antd/button';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
-
-
+import { InputScoreComponent } from './input-score/input-score.component';
+import { FilterPipe } from './filter.pipe';
+import { AddpointComponent } from './addpoint/addpoint.component';
+import { ListpostComponent } from './listpost/listpost.component';
+import { AddpostComponent } from './addpost/addpost.component';
 
 registerLocaleData(en);
 
@@ -33,6 +36,11 @@ registerLocaleData(en);
     ListStudentsComponent,
     UpdateStudentComponent,
     LoginComponent,
+    InputScoreComponent,
+    FilterPipe,
+    AddpointComponent,
+    ListpostComponent,
+    AddpostComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,8 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    NzButtonModule
+    NzButtonModule,
+
 
   ],
   providers: [
