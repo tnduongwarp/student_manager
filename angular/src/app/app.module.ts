@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddStudentComponent } from './add-student/add-student.component';
@@ -36,11 +35,12 @@ registerLocaleData(en);
     ListStudentsComponent,
     UpdateStudentComponent,
     LoginComponent,
-    InputScoreComponent,
-    FilterPipe,
     AddpointComponent,
     ListpostComponent,
-    AddpostComponent
+    AddpostComponent,
+    InputScoreComponent,
+    FilterPipe,
+
   ],
   imports: [
     BrowserModule,
