@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAll,getById,insertOne } from '../controller/misscontroller.js';
+import { getAll,getById,insertOne } from '../controller/postcontroller.js';
 const router = express.Router();
 
 router.get('/all',getAll);

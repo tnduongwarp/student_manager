@@ -20,7 +20,8 @@ export class AddStudentComponent {
           mssv:['',[Validators.required,Validators.maxLength(8),Validators.minLength(8)]],
           name:['',Validators.required],
           class:['',Validators.required],
-          email:['',[Validators.required, Validators.email]]
+          email:['',[Validators.required, Validators.email]],
+          status:['',[Validators.required]]
         }
       )
     }
@@ -46,5 +47,8 @@ export class AddStudentComponent {
   }
   get name(){
     return this.newStudent.get('name');
+  }
+  get status(){
+    return this.newStudent.get('status');
   }
 }

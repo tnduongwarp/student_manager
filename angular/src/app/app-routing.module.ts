@@ -5,9 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { ListStudentsComponent } from './list-students/list-students.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { UpdateStudentComponent } from './update-student/update-student.component';
-import { QrcodegenneratorComponent } from './qrcodegennerator/qrcodegennerator.component';
-import { ListmissComponent } from './listmiss/listmiss.component';
-import { AddmissComponent } from './addmiss/addmiss.component';
+import { AddpointComponent } from './addpoint/addpoint.component';
+import { AddpostComponent } from './addpost/addpost.component';
+import { InputScoreComponent } from './input-score/input-score.component';
+import { ListpostComponent } from './listpost/listpost.component';
+import { PostComponent } from './post/post.component';
 
 const routes: Routes = [
 
@@ -16,9 +18,11 @@ const routes: Routes = [
   { path: 'student/list', component: ListStudentsComponent },
   { path: 'student/add', component: AddStudentComponent },
   { path: 'student/update/:id', component: UpdateStudentComponent },
-  { path: 'qrbanking', component: QrcodegenneratorComponent},
-  { path: 'vote', component: ListmissComponent},
-  { path: 'miss/add', component: AddmissComponent}
+  { path: 'score/list', component: InputScoreComponent},
+  { path: 'score/add/:id', component: AddpointComponent},
+  { path: 'post/list', component: ListpostComponent},
+  { path: 'post/add', component: AddpostComponent},
+  { path: 'post/:id', component: PostComponent}
 ];
 
 @NgModule({

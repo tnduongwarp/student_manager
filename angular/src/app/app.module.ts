@@ -19,12 +19,11 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule} from 'ng-zorro-antd/button';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
-import { QrcodegenneratorComponent } from './qrcodegennerator/qrcodegennerator.component';
-import { ListmissComponent } from './listmiss/listmiss.component';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-import { AddmissComponent } from './addmiss/addmiss.component';
-import { FileUploadModule } from 'ng2-file-upload';
-import { ToastrModule } from 'ngx-toastr';
+import { InputScoreComponent } from './input-score/input-score.component';
+import { FilterPipe } from './filter.pipe';
+import { AddpointComponent } from './addpoint/addpoint.component';
+import { ListpostComponent } from './listpost/listpost.component';
+import { AddpostComponent } from './addpost/addpost.component';
 
 registerLocaleData(en);
 
@@ -36,9 +35,12 @@ registerLocaleData(en);
     ListStudentsComponent,
     UpdateStudentComponent,
     LoginComponent,
-    QrcodegenneratorComponent,
-    ListmissComponent,
-    AddmissComponent
+    AddpointComponent,
+    ListpostComponent,
+    AddpostComponent,
+    InputScoreComponent,
+    FilterPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -51,9 +53,8 @@ registerLocaleData(en);
     NzLayoutModule,
     NzMenuModule,
     NzButtonModule,
-    NgxQRCodeModule,
-    FileUploadModule,
-    ToastrModule.forRoot()
+
+
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

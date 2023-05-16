@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StudentsService } from '../service/students.service';
+import { StorageService } from '../service/storage.service';
+import { AccountService } from '../service/account.service';
 
 @Component({
   selector: 'app-list-students',
@@ -9,15 +11,17 @@ import { StudentsService } from '../service/students.service';
 })
 export class ListStudentsComponent implements OnInit{
   students: any;
-  token: any;
   isForbiden: boolean = false;
-  constructor( private routes: Router,
+  constructor(
+    private route : Router,
     private studentService: StudentsService){
 
     }
   ngOnInit(): void {
     this.loadStudent();
+
   }
+
   loadStudent(){
     this.studentService.listStudent().subscribe({
       next: (data:any)=>{
@@ -34,6 +38,10 @@ export class ListStudentsComponent implements OnInit{
       this.loadStudent()
     })
 
+  }
+  updateStudent(id: any){
+    console.log(id)
+    this.route.navigateByUrl('student/update/'+id)
   }
 
 }

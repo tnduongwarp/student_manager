@@ -26,7 +26,7 @@ export function createStudent(req, res) {
 
 // Get all stds
 export function getAllStudent(req, res) {
-    console.log(req.session.token)
+    
     SinhVien.find({})
         //.select('_id title description')
         .then((allStudent) => {

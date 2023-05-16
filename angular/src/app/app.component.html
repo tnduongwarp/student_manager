@@ -1,5 +1,6 @@
 <nz-layout class="app-layout">
   <nz-sider
+    *ngIf="isLogin"
     class="menu-sidebar"
     nzCollapsible
     nzWidth="256px"
@@ -8,10 +9,11 @@
     [nzTrigger]="null"
   >
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-        <h1>Ant Design Of Angular</h1>
-      </a>
+      <!-- <img
+        src="data:image/{{user.avatar.mime}};base64,
+                {{user.avatar.data}}"
+      /> -->
+      <h1>{{ user.email }}</h1>
     </div>
     <ul
       nz-menu
@@ -19,30 +21,22 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/student/list">Danh sách sinh viên</a>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/score/list">Quản lí điểm </a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/post/add">Đăng thông báo </a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/post/list">Thông báo </a>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
+    <nz-header *ngIf="isLogin">
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           <span
@@ -57,6 +51,9 @@
       </div>
     </nz-header>
     <nz-content>
+      <h2 *ngIf="!isLogin" style="margin-top: 10%; margin-left: 35%">
+        Đăng nhập để sử dụng hệ thống QLSV
+      </h2>
       <div class="inner-content">
         <router-outlet></router-outlet>
       </div>

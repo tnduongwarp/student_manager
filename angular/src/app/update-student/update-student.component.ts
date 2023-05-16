@@ -21,6 +21,7 @@ export class UpdateStudentComponent implements Validators{
           name:['',Validators.required],
           class:['',Validators.required],
           email:['',Validators.required],
+          status:['', Validators.required]
         }
       )
     }

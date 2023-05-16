@@ -1,10 +1,12 @@
 import SinhVien from '../routes/sinhvien.js'
 import User from '../models/User.js';
+import diem from '../routes/diem.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import * as qrcontroller from '../controller/qrcontroller.js';
 import uploadFilesMiddleware from '../middlewares/upload.js';
 import Miss from '../routes/miss.js'
+import post from '../routes/post.js'
 
 function route(app) {
     app.use(function(req, res, next) {
@@ -15,9 +17,8 @@ function route(app) {
         next();
       });
     app.use('/student', SinhVien);
-    app.use('/miss', Miss);
-  
-    app.get('/bankdata', qrcontroller.getAllBank)
+    app.use('/post',post)
+
 
     
 
