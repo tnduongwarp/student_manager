@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 
-.btn-file input[type=file] {
+.btn-file input[type="file"] {
   position: absolute;
   top: 0;
   right: 0;
@@ -19,12 +19,7 @@
   display: block;
 }
 
-input[readonly] {
-background-color: white !important;
-cursor: text !important;
-}
-
 /* this is only due to codepen display don't use this outside of codepen */
 .container {
-padding-top: 20px;
+  padding-top: 20px;
 }

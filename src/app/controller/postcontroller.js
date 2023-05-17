@@ -20,6 +20,8 @@ async function getAll(req, res){
           m.avatar = data[0].data;
         });
         await Promise.all(promises);
+        posts.reverse()
+        
         res.status(200).json({
           data: posts,
           message: "get all ok",

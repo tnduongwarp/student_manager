@@ -14,7 +14,10 @@ export class ListpostComponent {
   ngOnInit(){
     this.postService.getAll().subscribe(
       (data: any)=>{
-        this.posts= data.data
+
+
+        this.posts= data.data;
+
       }
     )
   }

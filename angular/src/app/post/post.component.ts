@@ -9,6 +9,7 @@ import { PostService } from '../service/post.service';
 })
 export class PostComponent {
   post : any
+
   constructor(private url: ActivatedRoute, private postService: PostService){}
   ngOnInit(){
     let id = this.url.snapshot.params['id'];
@@ -16,6 +17,8 @@ export class PostComponent {
     .subscribe(
       (data: any) => {
         this.post = data.data;
+        console.log(data.data.content)
+        document.getElementById('content')!.innerHTML = data.data.content;
       }
     )
   }
