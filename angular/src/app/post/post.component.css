@@ -1,21 +1,42 @@
 .announcement img {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
+  width: 100%;
+
+  display: block;
 }
 
 .announcement .author {
-  font-weight: bold;
+  font-weight: 400;
   margin-bottom: 5px;
+  color: #999;
 }
 
 .announcement .date {
   font-size: 0.8em;
   color: #999;
+  margin-left: auto;
+  margin-right: 0%;
 }
 .title {
   text-align: center;
 }
-.content p {
-  width: 300px;
+
+.info {
+  display: flex;
+  margin-top: 30px;
+}
+
+.announcement {
+  margin-right: 20%;
+  margin-left: 20%;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+.content {
+  width: 100%;
+  word-wrap: break-word;
+}
+.letter {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 30px;
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { PostService } from '../service/post.service';
 import { StorageService } from '../service/storage.service';
-
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 @Component({
   selector: 'app-addpost',
   templateUrl: './addpost.component.html',
@@ -17,6 +17,19 @@ export class AddpostComponent {
     imageId: null,
     author: null
   }
+  html='';
+
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text in this rich text editor....',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+   translate: 'no'
+  };
   constructor(private http : HttpClient, private postService: PostService, private storageService: StorageService){}
   onFileSelected(event :any) {
 

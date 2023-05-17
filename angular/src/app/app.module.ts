@@ -24,6 +24,7 @@ import { FilterPipe } from './filter.pipe';
 import { AddpointComponent } from './addpoint/addpoint.component';
 import { ListpostComponent } from './listpost/listpost.component';
 import { AddpostComponent } from './addpost/addpost.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 registerLocaleData(en);
 
@@ -53,12 +54,12 @@ registerLocaleData(en);
     NzLayoutModule,
     NzMenuModule,
     NzButtonModule,
-
+    AngularEditorModule,
 
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    httpInterceptorProviders
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

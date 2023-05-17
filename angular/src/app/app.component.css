@@ -77,9 +77,9 @@ nz-content {
 
 .inner-content {
   scroll-behavior: smooth;
-  overflow-y: scroll;
+  overflow: scroll;
   padding: 24px;
-  background: #fff;
+  background: #ffffff;
   height: 100%;
 }
 
