@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AccountService } from '../service/account.service';
+import { AccountService } from '../../service/account.service';
 
-import { StorageService } from '../service/storage.service';
+import { StorageService } from '../../service/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,8 +31,14 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.role = this.storageService.getUser().role;
+      if(this.role == 'admin'){
+        this.route.navigateByUrl("student/list")
+      }
+      else{
+        this.route.navigateByUrl("post/list")
+      }
 
-      this.route.navigateByUrl("student/list")
+
     }
   }
 

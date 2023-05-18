@@ -16,14 +16,26 @@ export function getAll(req, res){
         })
 }
 
+export function getByMSSV(req, res){
+    diem.find({MSSV : req.params.mssv})
+        .then( data => {
+            return res.status(200).json({
+                success : true,
+                data : data
+            })
+        })
+        .catch( err => {
+            console.log(err)
+        })
+}
 export function add(req, res){
     const idata= req.body.data;
-    diem.findBySemester(idata.semester)
+    diem.findBySemester(idata.semester, idata.MSSV)
         .then(data =>{
             console.log(data.length)
             if(data.length>0){
                 console.log('ki', data.l)
-                return res.status(500).json({
+                return res.status(501).json({
                     success: false,
                     message: 'semester invalid'
                 })

@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { ListStudentsComponent } from './list-students/list-students.component';
-import { AddStudentComponent } from './add-student/add-student.component';
-import { UpdateStudentComponent } from './update-student/update-student.component';
-import { AddpointComponent } from './addpoint/addpoint.component';
-import { AddpostComponent } from './addpost/addpost.component';
-import { InputScoreComponent } from './input-score/input-score.component';
-import { ListpostComponent } from './listpost/listpost.component';
-import { PostComponent } from './post/post.component';
+import { LoginComponent } from './component/login/login.component';
+import { ListStudentsComponent } from './component/list-students/list-students.component';
+import { AddStudentComponent } from './component/add-student/add-student.component';
+import { UpdateStudentComponent } from './component/update-student/update-student.component';
+import { AddpointComponent } from './component/addpoint/addpoint.component';
+import { AddpostComponent } from './component/addpost/addpost.component';
+import { InputScoreComponent } from './component/input-score/input-score.component';
+import { ListpostComponent } from './component/listpost/listpost.component';
+import { PostComponent } from './component/post/post.component';
+import { StudentinfoComponent } from './component/studentinfo/studentinfo.component';
 
 const routes: Routes = [
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'score/add/:id', component: AddpointComponent},
   { path: 'post/list', component: ListpostComponent},
   { path: 'post/add', component: AddpostComponent},
-  { path: 'post/:id', component: PostComponent}
+  { path: 'post/:id', component: PostComponent},
+  { path: 'myinfo', component: StudentinfoComponent}
 ];
 
 @NgModule({

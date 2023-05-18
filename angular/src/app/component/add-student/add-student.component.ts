@@ -1,7 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StudentsService } from '../service/students.service';
+import { StudentsService } from '../../service/students.service';
 
 @Component({
   selector: 'app-add-student',

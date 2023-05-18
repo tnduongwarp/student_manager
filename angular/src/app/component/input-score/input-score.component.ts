@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentsService } from '../service/students.service';
-import { ScoreService } from '../service/score.service';
+import { StudentsService } from '../../service/students.service';
+import { ScoreService } from '../../service/score.service';
 
 
 @Component({
@@ -12,6 +12,7 @@ export class InputScoreComponent implements OnInit{
   students: any;
   diems: any[]=[];
   cpa =new Map<number,number>();
+  tc = new Map<number,number>()
   isForbiden: boolean = false;
   searchText ='';
   constructor(
@@ -68,7 +69,7 @@ export class InputScoreComponent implements OnInit{
       const tmp: number=data[i].courses
       sumCourse = sumCourse + tmp *1 ;
     }
-
-    return sumScore/sumCourse;
+    this.tc.set(MSSV,sumCourse);
+    return Number((sumScore/sumCourse).toFixed(2));
   }
 }

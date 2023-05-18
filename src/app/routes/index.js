@@ -16,6 +16,7 @@ function route(app) {
       });
     app.use('/student', SinhVien);
     app.use('/post',post)
+    app.use('/score',diem)
 
 
     

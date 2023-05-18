@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Validator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentsService } from '../service/students.service';
-import { ScoreService } from '../service/score.service';
+import { StudentsService } from '../../service/students.service';
+import { ScoreService } from '../../service/score.service';
 
 @Component({
   selector: 'app-addpoint',

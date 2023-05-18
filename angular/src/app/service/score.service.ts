@@ -16,6 +16,8 @@ export class ScoreService {
   getAll(): Observable<any> {
     return this.http.get(this.url+'all');
   }
-
+  getByMSSV(mssv: any) : Observable<any>{
+    return this.http.get(this.url+mssv)
+  }
 
 }

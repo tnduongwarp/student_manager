@@ -1,12 +1,20 @@
 <div *ngIf="!isForbiden">
   <div class="row">
-    <div class="col-md-12 text-center"><h2>Thống kê điểm trung bình của sinh viên</h2></div>
+    <div class="col-md-12 text-center">
+      <h2>Thống kê điểm trung bình của sinh viên</h2>
+    </div>
   </div>
 
   <div class="row">
     <div class="search-student">
-      <input type="text" class="form-control search-field" name="search" [(ngModel)]="searchText" autocomplete="off"
-      placeholder="&#61442;  Start searching for a student by MSSV or name or Class">
+      <input
+        type="text"
+        class="form-control search-field"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="&#61442;  Start searching for a student by MSSV or name or Class"
+      />
     </div>
     <table class="table" style="border: 1px solid black">
       <div class="col-md-2" style="text-align: center"></div>
@@ -15,30 +23,26 @@
         <th style="text-align: center">Họ tên</th>
         <th style="text-align: center">Lớp</th>
         <th style="text-align: center">Status</th>
+        <th style="text-align: center">Số tín chỉ tích lũy</th>
         <th style="text-align: center">CPA</th>
         <th style="text-align: center">Nhập điểm</th>
       </thead>
       <div class="col-md-2"></div>
       <tbody>
-        <tr *ngFor="let student of students | appFilter :searchText">
+        <tr *ngFor="let student of students | appFilter : searchText">
           <td style="text-align: center">{{ student.mssv }}</td>
           <td style="text-align: center">{{ student.name }}</td>
           <td style="text-align: center">{{ student.class }}</td>
           <td style="text-align: center">{{ student.status }}</td>
+          <td style="text-align: center">{{ this.tc.get(student.mssv) }}</td>
           <td style="text-align: center">{{ this.cpa.get(student.mssv) }}</td>
-          <td style="text-align: center;"><a href="score/add/{{student._id}}">Nhập điểm</a></td>
-          <!-- <td style="text-align: center">
-            <button (click)="updateStudent(student._id)" class="btn btn-success"
-              >EDIT</button
-            >|<button (click)="deleteStudent(student)" class="btn btn-danger">
-              DELETE
-            </button>
-          </td> -->
+          <td style="text-align: center">
+            <a href="score/add/{{ student._id }}">Nhập điểm</a>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-
-<div *ngIf="isForbiden">You are not permitted!</div>
-
+  <div *ngIf="isForbiden">You are not permitted!</div>
+</div>

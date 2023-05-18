@@ -11,6 +11,8 @@ import { StorageService } from './service/storage.service';
 export class AppComponent {
   user: any;
   isLogin= false
+  isAdmin = false
+  isStudent = false
   constructor(
     private accservice: AccountService,
     private route : Router,
@@ -20,7 +22,12 @@ export class AppComponent {
   ngOnInit(): void {
 
     this.user= this.storageService.getUser();
-    if(this.storageService.isLoggedIn()) this.isLogin=true;
+
+    if(this.storageService.isLoggedIn()) {
+      this.isLogin=true;
+      if(this.user.role == 'admin') this.isAdmin=true
+      if(this.user.role == "student") this.isStudent = true
+    }
     else{
       this.route.navigateByUrl('login');
     }

@@ -34,9 +34,20 @@ const isAdmin = (req, res, next) => {
 
 }
 
+const isStudent = (req, res, next) => {
+    if(req.user.role === "student"){
+        next();
+        return;
+    }
+    else {
+        res.status(403).send({message: "Required Student Role!"})
+    }
+}
+
 
 const authenticate = {
     verifyToken,
-    isAdmin
+    isAdmin,
+    isStudent
 };
 export default authenticate;

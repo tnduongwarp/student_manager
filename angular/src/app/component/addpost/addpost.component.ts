@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { PostService } from '../service/post.service';
-import { StorageService } from '../service/storage.service';
+import { PostService } from '../../service/post.service';
+import { StorageService } from '../../service/storage.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 @Component({
   selector: 'app-addpost',

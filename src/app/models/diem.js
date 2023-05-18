@@ -6,8 +6,8 @@ class Diem extends BaseModel {
         super(BaseModel)
         this.collectionName = 'diems';
     }
-    async findBySemester(semester){
-        return await this.getCollection().find({ semester: semester }).toArray()
+    async findBySemester(semester,mssv){
+        return await this.getCollection().find({ semester: semester , MSSV : mssv}).toArray()
     }
 }
 export default new Diem();

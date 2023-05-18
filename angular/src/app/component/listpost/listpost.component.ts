@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PostService } from '../service/post.service';
-import { StorageService } from '../service/storage.service';
+import { PostService } from '../../service/post.service';
+import { StorageService } from '../../service/storage.service';
 
 @Component({
   selector: 'app-listpost',

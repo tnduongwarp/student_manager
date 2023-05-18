@@ -21,17 +21,20 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *ngIf="isAdmin">
         <a routerLink="/student/list">Danh sách sinh viên</a>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *ngIf="isAdmin">
         <a routerLink="/score/list">Quản lí điểm </a>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *ngIf="isAdmin">
         <a routerLink="/post/add">Đăng thông báo </a>
       </li>
       <li nz-menu-item nzMatchRouter>
         <a routerLink="/post/list">Thông báo </a>
+      </li>
+      <li nz-menu-item nzMatchRouter *ngIf="isStudent">
+        <a routerLink="/myinfo">Thông tin cá nhân </a>
       </li>
     </ul>
   </nz-sider>
@@ -51,10 +54,10 @@
       </div>
     </nz-header>
     <nz-content>
-      <h2 *ngIf="!isLogin" style="margin-top: 10%; margin-left: 35%">
+      <h2 *ngIf="!isLogin" style="margin-top: 5%; margin-left: 35%">
         Đăng nhập để sử dụng hệ thống QLSV
       </h2>
-      <div class="inner-content">
+      <div class="inner-content" id="inner-content">
         <router-outlet></router-outlet>
       </div>
     </nz-content>
