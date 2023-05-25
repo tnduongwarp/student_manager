@@ -18,4 +18,7 @@ export class PostService {
   getById(id: any){
     return this.http.get(this.url+id);
   }
+  deleteById(postId: any, imageId: any){
+    return this.http.delete(this.url + 'delete/'+postId, imageId)
+  }
 }

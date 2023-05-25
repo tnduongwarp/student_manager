@@ -13,6 +13,7 @@ export class AppComponent {
   isLogin= false
   isAdmin = false
   isStudent = false
+  isSystemAdmin = false;
   constructor(
     private accservice: AccountService,
     private route : Router,
@@ -27,6 +28,7 @@ export class AppComponent {
       this.isLogin=true;
       if(this.user.role == 'admin') this.isAdmin=true
       if(this.user.role == "student") this.isStudent = true
+      if(this.user.role == 'systemadmin') this.isSystemAdmin = true
     }
     else{
       this.route.navigateByUrl('login');

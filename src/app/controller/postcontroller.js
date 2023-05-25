@@ -48,4 +48,20 @@ async function getById(req,res){
         console.log(err);
     })
 }
-export {getAll,getById,insertOne}
+
+async function deleteById(req,res){
+    try {
+        const postId = req.params.id;
+        const imageId = req.body.imageId;
+        await Promise.all([post.deleteOneById(postId), avatar.deleteById(imageId)]) ;
+        res.status(200).json({
+            message : 'ok'
+        })
+    
+    } catch (error) {
+        console.log(error)
+    }
+    
+
+}
+export {getAll,getById,insertOne,deleteById}

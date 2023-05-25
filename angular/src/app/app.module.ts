@@ -26,6 +26,7 @@ import { ListpostComponent } from './component/listpost/listpost.component';
 import { AddpostComponent } from './component/addpost/addpost.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { StudentinfoComponent } from './component/studentinfo/studentinfo.component';
+import { AddAccountComponent } from './component/add-account/add-account.component';
 
 registerLocaleData(en);
 
@@ -42,7 +43,8 @@ registerLocaleData(en);
     AddpostComponent,
     InputScoreComponent,
     FilterPipe,
-    StudentinfoComponent
+    StudentinfoComponent,
+    AddAccountComponent
   ],
   imports: [
     BrowserModule,

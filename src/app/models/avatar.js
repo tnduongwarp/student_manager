@@ -10,7 +10,9 @@ class Avatar extends BaseModel {
     async findByFile_id(file_id) {
         return await this.getCollection().find({ files_id: new ObjectId(file_id)  }).toArray()
     }
-    
+    async deleteById(file_id){
+        return await this.getCollection().deleteMany({files_id: new ObjectId(file_id)})
+    }
 
 }
 export default new Avatar();

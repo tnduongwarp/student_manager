@@ -11,6 +11,7 @@ import { InputScoreComponent } from './component/input-score/input-score.compone
 import { ListpostComponent } from './component/listpost/listpost.component';
 import { PostComponent } from './component/post/post.component';
 import { StudentinfoComponent } from './component/studentinfo/studentinfo.component';
+import { AddAccountComponent } from './component/add-account/add-account.component';
 
 const routes: Routes = [
 
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'post/list', component: ListpostComponent},
   { path: 'post/add', component: AddpostComponent},
   { path: 'post/:id', component: PostComponent},
-  { path: 'myinfo', component: StudentinfoComponent}
+  { path: 'myinfo', component: StudentinfoComponent},
+  { path: 'sysadmin/account/add', component: AddAccountComponent}
 ];
 
 @NgModule({

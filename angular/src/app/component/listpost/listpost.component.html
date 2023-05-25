@@ -28,7 +28,13 @@
             <p>
               {{ post.author }}
             </p>
-            <a href="/post/{{ post._id }}" class="box_btn">chi tiết</a>
+            <div class="function">
+              <a href="/post/{{ post._id }}" class="box_btn">chi tiết</a>
+
+              <button class="btn" (click)="deletePost(post._id, post.imageId)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>

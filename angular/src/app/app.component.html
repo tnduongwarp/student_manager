@@ -36,6 +36,15 @@
       <li nz-menu-item nzMatchRouter *ngIf="isStudent">
         <a routerLink="/myinfo">Thông tin cá nhân </a>
       </li>
+      <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
+        <a routerLink="#">Quản lí tài khoản </a>
+      </li>
+      <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
+        <a routerLink="#">Chỉnh sửa điểm </a>
+      </li>
+      <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
+        <a routerLink="#">Tạo tài khoản </a>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>
