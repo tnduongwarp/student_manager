@@ -9,11 +9,8 @@
     [nzTrigger]="null"
   >
     <div class="sidebar-logo">
-      <!-- <img
-        src="data:image/{{user.avatar.mime}};base64,
-                {{user.avatar.data}}"
-      /> -->
-      <h1>{{ user.email }}</h1>
+      <img src="assets/images/{{ user.imageId }}" />
+      <h1>{{ user.name }}</h1>
     </div>
     <ul
       nz-menu
@@ -37,15 +34,16 @@
         <a routerLink="/myinfo">Thông tin cá nhân </a>
       </li>
       <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
-        <a routerLink="#">Quản lí tài khoản </a>
+        <a routerLink="/sysadmin/account/list">Danh sách tài khoản </a>
       </li>
       <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
-        <a routerLink="#">Chỉnh sửa điểm </a>
+        <a routerLink="/score/statistic">Thống kê điểm</a>
       </li>
       <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
-        <a routerLink="#">Tạo tài khoản </a>
+        <a routerLink="/sysadmin/account/add">Tạo tài khoản </a>
       </li>
     </ul>
+    <button class="logout-button" (click)="buttonClicked()">Sign out</button>
   </nz-sider>
   <nz-layout>
     <nz-header *ngIf="isLogin">
@@ -57,9 +55,6 @@
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
           ></span>
         </span>
-        <button class="logout-button" (click)="buttonClicked()">
-          Sign out
-        </button>
       </div>
     </nz-header>
     <nz-content>

@@ -1,1 +1,137 @@
-<p>add-account works!</p>
+<div class="container">
+  <div class="title">Tạo tài khoản người dùng mới</div>
+  <div class="content">
+    <form action="#">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Full Name</span>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            [(ngModel)]="form.name"
+            name="fullname"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Email</span>
+          <input
+            type="text"
+            placeholder="Enter your email"
+            [(ngModel)]="form.email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Password</span>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            [(ngModel)]="form.password"
+            name="password"
+            required
+          />
+        </div>
+        <input
+          type="checkbox"
+          (click)="showPassword()"
+          style="margin-left: 10px; margin-right: 5px; margin-bottom: 15px"
+        />Show Password
+        <div class="input-box" *ngIf="form.role === 'student'">
+          <span class="details">MSSV</span>
+          <input
+            type="text"
+            placeholder="Enter your password"
+            [(ngModel)]="form.mssv"
+            name="mssv"
+            required
+          />
+        </div>
+      </div>
+      <div class="role-details">
+        <input
+          type="radio"
+          name="role"
+          id="dot-1"
+          [(ngModel)]="form.role"
+          value="systemadmin"
+        />
+        <input
+          type="radio"
+          name="role"
+          id="dot-2"
+          [(ngModel)]="form.role"
+          value="admin"
+        />
+        <input
+          type="radio"
+          name="role"
+          id="dot-3"
+          [(ngModel)]="form.role"
+          value="student"
+        />
+        <span class="role-title">Role</span>
+        <div class="category">
+          <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="role">System Admin</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="role">Admin</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="role">Student</span>
+          </label>
+        </div>
+      </div>
+      <div class="input-box">
+        <span class="details">Avatar</span>
+        <input
+          type="file"
+          placeholder="Upload an avatar for this account"
+          (change)="fileChangeEvent($event)"
+          required
+        />
+        <br />
+        <br />
+
+        <button class="edit-image" (click)="resetImage()">Reset image</button>
+        <br />
+        <br />
+
+        <button class="edit-image" (click)="zoomOut()">Zoom -</button>
+        <button class="edit-image" (click)="zoomIn()">Zoom +</button>
+
+        <div>
+          <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [containWithinAspectRatio]="containWithinAspectRatio"
+            [aspectRatio]="1"
+            [resizeToWidth]="256"
+            [cropperMinWidth]="128"
+            [onlyScaleDown]="true"
+            [roundCropper]="true"
+            [canvasRotation]="canvasRotation"
+            [transform]="transform"
+            [alignImage]="'left'"
+            [style.display]="showCropper ? null : 'none'"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady($event)"
+            (loadImageFailed)="loadImageFailed()"
+          ></image-cropper>
+        </div>
+      </div>
+
+      <div class="button">
+        <input type="submit" (click)="onSubmit()" value="Xác nhận" />
+      </div>
+    </form>
+  </div>
+</div>

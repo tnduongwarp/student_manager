@@ -27,7 +27,10 @@ import { AddpostComponent } from './component/addpost/addpost.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { StudentinfoComponent } from './component/studentinfo/studentinfo.component';
 import { AddAccountComponent } from './component/add-account/add-account.component';
-
+import { ListUserComponent } from './component/list-user/list-user.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ScoreStatisticsComponent } from './component/score-statistics/score-statistics.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 registerLocaleData(en);
 
 
@@ -44,7 +47,9 @@ registerLocaleData(en);
     InputScoreComponent,
     FilterPipe,
     StudentinfoComponent,
-    AddAccountComponent
+    AddAccountComponent,
+    ListUserComponent,
+    ScoreStatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,8 @@ registerLocaleData(en);
     NzMenuModule,
     NzButtonModule,
     AngularEditorModule,
-
+    ImageCropperModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

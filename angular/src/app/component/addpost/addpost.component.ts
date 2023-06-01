@@ -34,9 +34,6 @@ export class AddpostComponent {
   onFileSelected(event :any) {
 
     this.file = event.target.files[0];
-
-
-
 }
   onSubmit(){
     if (this.file) {
@@ -49,7 +46,7 @@ export class AddpostComponent {
         this.http.post("http://localhost:3000/upload", formData)
         .subscribe(
           (data: any)=>{
-            this.form.imageId=data.id;
+            this.form.imageId=data.name;
             this.postService.addPost(this.form).subscribe((data: any)=>{
               window.alert('Thêm thành công')
             });
@@ -57,8 +54,5 @@ export class AddpostComponent {
           }
         );
     }
-
   }
-
-
 }

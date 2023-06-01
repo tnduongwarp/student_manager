@@ -64,6 +64,20 @@ export function add(req, res){
                 message: 'sever error. Try again',
                 error: err.message
             })
-        })
-            
+        })        
+}
+
+export function getByYearAndSemeseter(req,res){
+            const data = req.query;
+            console.log(data)
+            diem.findByYearAndSemeseter(data.year, data.semester)
+            .then( data => {
+                res.status(200).json({
+                    data: data,
+                    message : 'ok'
+                })
+            })
+            .catch(e => {
+                console.log(e);
+            })
 }

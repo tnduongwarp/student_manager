@@ -1,0 +1,47 @@
+<div class="table-users">
+  <div class="header">Users</div>
+
+  <table cellspacing="0">
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Role</th>
+      <th>Lock/Unlock</th>
+      <th>Delete</th>
+    </tr>
+
+    <tr *ngFor="let user of users">
+      <td>
+        <img src="assets/images/{{ user.imageId }}" alt="" />
+      </td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.status }}</td>
+      <td>{{ user.role }}</td>
+      <td>
+        <i
+          class="fa fa-unlock"
+          *ngIf="user.status === 'Locked'"
+          style="font-size: 20px; color: rgb(41, 39, 39)"
+          (click)="unlockAccount(user._id, user)"
+        ></i>
+        <i
+          class="fa fa-lock"
+          *ngIf="user.status === 'Active'"
+          style="font-size: 20px; color: rgb(41, 39, 39)"
+          (click)="lockAccount(user._id, user)"
+        ></i>
+      </td>
+      <td>
+        <i
+          class="fa fa-trash"
+          (click)="deleteAccount(user._id)"
+          style="font-size: 20px; color: red"
+          aria-hidden="true"
+        ></i>
+      </td>
+    </tr>
+  </table>
+</div>

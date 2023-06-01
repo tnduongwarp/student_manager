@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import uploadFilesMiddleware from '../middlewares/upload.js';
 import post from '../routes/post.js'
+import user from '../routes/user.js'
 
 function route(app) {
     app.use(function(req, res, next) {
@@ -15,48 +16,37 @@ function route(app) {
         next();
       });
     app.use('/student', SinhVien);
-    app.use('/post',post)
-    app.use('/score',diem)
-
-
-    
-
-
+    app.use('/post',post);
+    app.use('/score',diem);
+    app.use('/user', user);
 
     app.post("/login", async (req, res) => {
-
-
-        try {
-
-           const {email,password}= req.body;
-
-
-            if (!(email && password)) {
-                 return res.status(400).send("All input is required");
+      try {
+        const {email,password}= req.body;
+        if (!(email && password)) 
+        {
+          return res.status(400).send("All input is required");
+        };
+        var user = await User.findOne({ email: email });
+        if (user && (await bcrypt.compare(password, user.password)) && user.status=='Active') 
+        {
+          const token = await jwt.sign
+          (
+            { 
+              email: user.email,
+              role: user.role
+            },
+            process.env.TOKEN_KEY,
+            {
+            expiresIn: "2h",
             }
+          );
 
-            var user = await User.findOne({ email: email });
-            
-
-            if (user && (await bcrypt.compare(password, user.password))) {
-
-                const token = await jwt.sign(
-                    { 
-                       email: user.email,
-                        role: user.role
-                    },
-                    process.env.TOKEN_KEY,
-                    {
-                        expiresIn: "2h",
-                    }
-                );
-
-                req.session.token=token
-                
-                res.status(200).json(user);
-            }
-            else res.status(400).send("Invalid Credentials");
-        } catch (err) {
+          req.session.token=token
+          res.status(200).json(user);
+        }
+        else res.status(400).send("Invalid Credentials");
+      } catch (err) {
             console.log(err);
         }
 

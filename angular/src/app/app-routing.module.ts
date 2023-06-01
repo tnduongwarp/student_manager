@@ -12,11 +12,13 @@ import { ListpostComponent } from './component/listpost/listpost.component';
 import { PostComponent } from './component/post/post.component';
 import { StudentinfoComponent } from './component/studentinfo/studentinfo.component';
 import { AddAccountComponent } from './component/add-account/add-account.component';
+import { ListUserComponent } from './component/list-user/list-user.component';
+import { ScoreStatisticsComponent } from './component/score-statistics/score-statistics.component';
 
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
-
+  { path: 'sysadmin/account/list', component: ListUserComponent},
   { path: 'student/list', component: ListStudentsComponent },
   { path: 'student/add', component: AddStudentComponent },
   { path: 'student/update/:id', component: UpdateStudentComponent },
@@ -26,7 +28,8 @@ const routes: Routes = [
   { path: 'post/add', component: AddpostComponent},
   { path: 'post/:id', component: PostComponent},
   { path: 'myinfo', component: StudentinfoComponent},
-  { path: 'sysadmin/account/add', component: AddAccountComponent}
+  { path: 'sysadmin/account/add', component: AddAccountComponent},
+  { path: 'score/statistic', component: ScoreStatisticsComponent}
 ];
 
 @NgModule({

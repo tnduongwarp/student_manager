@@ -38,12 +38,15 @@
   line-height: 64px;
   background: #001529;
   transition: all 0.3s;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .sidebar-logo img {
   display: inline-block;
-  height: 32px;
-  width: 32px;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
   vertical-align: middle;
 }
 
@@ -75,6 +78,9 @@ nz-content {
   margin: 24px;
 }
 
+nz-sider {
+  position: relative;
+}
 .inner-content {
   scroll-behavior: smooth;
   overflow: scroll;
@@ -89,15 +95,17 @@ nz-content {
   border: 1px solid #ff4742;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   color: #ffffff;
   cursor: pointer;
-  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 70px;
   font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
   font-size: 16px;
   font-weight: 800;
   line-height: 16px;
-  min-height: 40px;
+  min-width: 80px;
   outline: 0;
   padding: 12px 14px;
   text-align: center;
@@ -107,7 +115,6 @@ nz-content {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
-  margin-left: 80%;
 }
 
 .logout-button:hover,

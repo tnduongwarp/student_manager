@@ -12,7 +12,7 @@
         <!-- Single Blog -->
         <div class="single-blog">
           <div class="blog-img">
-            <img src="data:image/jpg;base64,{{ post.avatar }}" alt="" />
+            <img src="assets/images/{{ post.imageId }}" alt="" />
           </div>
           <div class="blog-content">
             <div class="blog-title">
@@ -31,7 +31,11 @@
             <div class="function">
               <a href="/post/{{ post._id }}" class="box_btn">chi tiết</a>
 
-              <button class="btn" (click)="deletePost(post._id, post.imageId)">
+              <button
+                class="btn"
+                (click)="deletePost(post._id, post.imageId)"
+                *ngIf="isSystemAdmin"
+              >
                 <i class="fa fa-trash"></i>
               </button>
             </div>

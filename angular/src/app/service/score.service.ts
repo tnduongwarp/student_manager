@@ -19,5 +19,9 @@ export class ScoreService {
   getByMSSV(mssv: any) : Observable<any>{
     return this.http.get(this.url+mssv)
   }
+  getDataFOrChart(year: any, semester: any){
+    const url = `${this.url}chart?year=${year}&semester=${semester}`;
+    return this.http.get(url)
+  }
 
 }

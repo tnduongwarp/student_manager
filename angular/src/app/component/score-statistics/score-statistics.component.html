@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="input">
+    <div class="select">
+      <label for="semester" class="semester-label">Kỳ học</label>
+      <select name="semester" id="semester" [(ngModel)]="semester">
+        <option *ngFor="let semester of semesterOption" [value]="semester">
+          {{ semester }}
+        </option>
+      </select>
+    </div>
+    <div class="select">
+      <label for="year" class="year-label">Khóa</label>
+      <select name="year" id="year" [(ngModel)]="year">
+        <option *ngFor="let year of yearOption" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <button (click)="onSubmit()">Submit</button>
+    </div>
+  </div>
+  <div>
+    <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+  </div>
+</div>
