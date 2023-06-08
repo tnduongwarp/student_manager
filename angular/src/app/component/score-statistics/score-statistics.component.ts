@@ -17,49 +17,55 @@ export class ScoreStatisticsComponent {
   xs: any = 0;
   dataForChart :any =[];
   chartOptions: any;
+
   constructor(private scoreService : ScoreService){}
   onSubmit(){
+    this.tb = 0;
+    this.kha = 0;
+    this.gioi = 0;
+    this.xs = 0;
+        this.scoreService.getDataFOrChart(this.year,this.semester).subscribe({
+        next : (data : any)=>{
+          this.dataForChart = data.data;
+          for(let i=0;i<this.dataForChart.length;i++){
+            if(this.dataForChart[i].gpa <2.5) this.tb++;
+            else if(this.dataForChart[i].gpa <3.2) this.kha++;
+            else if(this.dataForChart[i].gpa<3.6) this.gioi++;
+            else if(this.dataForChart[i].gpa >=3.6) this.xs++
+          };
+          this.chartOptions = {
+            title: {
+              text: "Thống kê kết quả học tập của sinh viên",
+              fontFamily: "Arial",
+              fontSize: 24,
+              fontWeight: "bold",
+              fontColor: "#333"
+            },
+            axisY: {
+              viewportMinimum: 0, // Giá trị cố định của cột x bắt đầu từ 0
+              viewportMaximum: 10, // Giá trị cố định của cột x kết thúc ở 10
+              gridThickness: 0
+            },
+            dataPointWidth: 100,
+            data: [{
+              type: "column",
+              animationEnabled: false,
 
-    this.scoreService.getDataFOrChart(this.year,this.semester).subscribe({
-      next : (data : any)=>{
-        this.dataForChart = data.data;
+              dataPoints: [
 
-      },
-      error: (err : any)=>{
-        console.log(err);
-      }
-    })
-    for(let i=0;i<this.dataForChart.length;i++){
-      if(this.dataForChart[i].gpa <2.5) this.tb++;
-      else if(this.dataForChart[i].gpa <3.2) this.kha++;
-      else if(this.dataForChart[i].gpa<3.6) this.gioi++;
-      else if(this.dataForChart[i].gpa >3.6) this.xs++
-    };
-    this.chartOptions = {
-      title: {
-        text: "Thống kê kết quả học tập của sinh viên"
-      },
-      axisY: {
-        viewportMinimum: 0, // Giá trị cố định của cột x bắt đầu từ 0
-        viewportMaximum: 100 // Giá trị cố định của cột x kết thúc ở 10
-      },
-      dataPointWidth: 100,
-      data: [{
-        type: "column",
-        animationEnabled: true,
+                { label: "Trung bình"  ,y: this.tb , color: 'red' },
+                { label: "Khá", y: this.kha , color : 'orange' },
+                { label: "Giỏi", y: this.gioi  },
+                { label: "Xuất sắc",  y: this.xs , color : 'green' }
+              ],
 
-        dataPoints: [
+            }]
+          };
 
-          { label: "Trung bình"  ,y: this.tb , color: 'red' },
-          { label: "Khá", y: this.kha , color : 'orange' },
-          { label: "Giỏi", y: this.gioi  },
-          { label: "Xuất sắc",  y: this.xs , color : 'green' }
-        ],
-
-      }]
-    };
+        },
+        error: (err : any)=>{
+          console.log(err);
+        }
+      })
   }
-
-
-
 }
