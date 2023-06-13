@@ -1,15 +1,15 @@
 import authenticate from '../middlewares/authenticate.js'
 import express from 'express'
 const router = express.Router();
-import { getAll, add ,getByMSSV, getByYearAndSemeseter} from '../controller/scorecontroller.js';
+import { getAll, add ,getByMSSV, getByYearAndSemeseter, updateById} from '../controller/scorecontroller.js';
 router.get('/chart',getByYearAndSemeseter)
 
-router.get('/all',[authenticate.verifyToken, authenticate.isAdmin], getAll);
+router.get('/all',[authenticate.verifyToken], getAll);
 
-router.post('/add',[authenticate.verifyToken, authenticate.isAdmin], add);
+router.post('/add',[authenticate.verifyToken], add);
 
-router.get('/:mssv',[authenticate.verifyToken, authenticate.isStudent], getByMSSV)
+router.get('/:mssv',[authenticate.verifyToken], getByMSSV)
 
-
+router.post('/:id', authenticate.verifyToken, updateById)
 
 export default router; 

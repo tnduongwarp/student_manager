@@ -81,3 +81,19 @@ export function getByYearAndSemeseter(req,res){
                 console.log(e);
             })
 }
+
+export function updateById(req, res){
+    const id = req.params.id
+    const data = req.body;
+    console.log(data);
+    console.log(id)
+    diem.updatebyid(id, data)
+    .then(data =>{
+        res.status(200).json({
+            message: "ok r"
+        });
+    })
+    .catch(e =>{
+        console.log(e);
+    })
+}

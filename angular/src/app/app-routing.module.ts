@@ -14,6 +14,7 @@ import { StudentinfoComponent } from './component/studentinfo/studentinfo.compon
 import { AddAccountComponent } from './component/add-account/add-account.component';
 import { ListUserComponent } from './component/list-user/list-user.component';
 import { ScoreStatisticsComponent } from './component/score-statistics/score-statistics.component';
+import { EditscoreComponent } from './component/editscore/editscore.component';
 
 const routes: Routes = [
 
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'post/:id', component: PostComponent},
   { path: 'myinfo', component: StudentinfoComponent},
   { path: 'sysadmin/account/add', component: AddAccountComponent},
-  { path: 'score/statistic', component: ScoreStatisticsComponent}
+  { path: 'score/statistic', component: ScoreStatisticsComponent},
+  { path: 'score/edit', component: EditscoreComponent}
 ];
 
 @NgModule({

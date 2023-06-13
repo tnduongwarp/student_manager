@@ -31,6 +31,8 @@ import { ListUserComponent } from './component/list-user/list-user.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ScoreStatisticsComponent } from './component/score-statistics/score-statistics.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { EditscoreComponent } from './component/editscore/editscore.component';
+import { EditScoreFilterPipe } from './editscorefilter.pipe';
 registerLocaleData(en);
 
 
@@ -46,10 +48,12 @@ registerLocaleData(en);
     AddpostComponent,
     InputScoreComponent,
     FilterPipe,
+    EditScoreFilterPipe,
     StudentinfoComponent,
     AddAccountComponent,
     ListUserComponent,
-    ScoreStatisticsComponent
+    ScoreStatisticsComponent,
+    EditscoreComponent
   ],
   imports: [
     BrowserModule,

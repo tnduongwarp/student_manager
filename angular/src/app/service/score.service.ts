@@ -23,5 +23,8 @@ export class ScoreService {
     const url = `${this.url}chart?year=${year}&semester=${semester}`;
     return this.http.get(url)
   }
+  updateById(id: any, data: any){
+    return this.http.post(this.url+id, data);
+  }
 
 }

@@ -42,6 +42,9 @@
       <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
         <a routerLink="/sysadmin/account/add">Tạo tài khoản </a>
       </li>
+      <li nz-menu-item nzMatchRouter *ngIf="isSystemAdmin">
+        <a routerLink="/score/edit">Chỉnh sửa điểm </a>
+      </li>
     </ul>
     <button class="logout-button" (click)="buttonClicked()">Sign out</button>
   </nz-sider>

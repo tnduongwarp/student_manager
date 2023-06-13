@@ -1,0 +1,80 @@
+<div>
+  <div class="search">
+    <div class="search-student">
+      <input
+        type="text"
+        class="form-control search-field"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="&#61442;  Tìm theo MSSV"
+      />
+    </div>
+  </div>
+  <div class="data">
+    <table>
+      <tr>
+        <th>MSSV</th>
+        <th>Kỳ</th>
+        <th>Số tín chỉ</th>
+        <th>GPA</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let data of scoredata | Filter : searchText">
+        <td>{{ data.MSSV }}</td>
+        <td>{{ data.semester }}</td>
+        <td>{{ data.courses }}</td>
+        <td>{{ data.gpa }}</td>
+        <td>
+          <button (click)="onClick(data._id)" *ngIf="!isEditting">Sửa</button>
+          <i
+            style="font-size: 15px; margin-left: 250px; cursor: pointer"
+            class="fa"
+            *ngIf="isEditting && editData.id === data._id"
+            (click)="exitEdit(data._id)"
+            >&#xf00d;</i
+          >
+          <div id="{{ data._id }}" class="edit-form">
+            <label for="MSSV">MSSV</label>
+            <input
+              type="text"
+              id="MSSV"
+              name="MSSV"
+              value="{{ data.MSSV }}"
+              readonly
+            />
+            <br />
+            <label for="semester">Semester</label>
+            <input
+              type="text"
+              id="semester"
+              name="semester"
+              value="{{ data.semester }}"
+              readonly
+            />
+            <br />
+            <label for="courses">Số tín chỉ </label>
+            <input
+              type="text"
+              id="courses"
+              name="courses"
+              value="{{ data.courses }}"
+              [(ngModel)]="editData.courses"
+            />
+            <br />
+            <label for="gpa">GPA</label>
+            <input
+              type="text"
+              id="gpa"
+              name="gpa"
+              value="{{ data.gpa }}"
+              [(ngModel)]="editData.gpa"
+            />
+            <br />
+            <button (click)="submitEdit(data._id)">Lưu</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
